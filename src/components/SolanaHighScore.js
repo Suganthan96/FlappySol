@@ -235,7 +235,16 @@ const SolanaHighScore = ({ currentScore, gameState }) => {
       padding: '20px'
     }}>
       <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center', width: '100%' }}>
-        <WalletMultiButton style={{ fontSize: '1em', padding: '10px 20px', borderRadius: '8px', minHeight: '40px' }} />
+        <WalletMultiButton
+          style={{
+            padding: '10px 20px',
+            borderRadius: '8px',
+            background: '#00FFA3',
+            color: '#222', // dark text for contrast
+            border: 'none',
+            fontWeight: 'bold'
+          }}
+        />
       </div>
       {connected && (
         <div
