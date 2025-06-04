@@ -234,22 +234,60 @@ const SolanaHighScore = ({ currentScore, gameState }) => {
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       padding: '20px'
     }}>
-      <div style={{ transform: 'scale(0.8)' }}>
-        <WalletMultiButton />
+      <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center', width: '100%' }}>
+        <WalletMultiButton style={{ fontSize: '1em', padding: '10px 20px', borderRadius: '8px', minHeight: '40px' }} />
       </div>
       {connected && (
-        <div className="score-display" style={{
-          background: 'rgba(0, 0, 0, 0.7)',
-          padding: '8px 12px',
-          borderRadius: '5px',
-          color: 'white',
-          fontSize: '0.9em',
-          minWidth: '120px',
-          textAlign: 'right'
-        }}>
-          <h3 style={{ margin: 0, fontSize: '1.1em' }}>High Score: {highScore}</h3>
-          {loading && <p style={{ margin: '5px 0', fontSize: '0.9em' }}>Updating score...</p>}
-          {error && <p className="error" style={{ color: '#ff6b6b', margin: '5px 0', fontSize: '0.9em' }}>{error}</p>}
+        <div
+          className="score-display"
+          style={{
+            background: 'rgba(0, 0, 0, 0.75)',
+            padding: '18px 24px',
+            borderRadius: '12px',   
+            color: '#fff',
+            minWidth: '160px',
+            textAlign: 'center',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
+            marginBottom: '8px',
+            border: '2px solid #00FFA3', // Solana green accent
+            position: 'relative',
+          }}
+        >
+          <div
+            style={{
+              fontSize: '2.8em',
+              fontWeight: 'bold',
+              color: '#00FFA3', // Solana green
+              textShadow: '0 2px 8px #000, 0 0 4px #00FFA3',
+              letterSpacing: '1px',
+              marginBottom: '6px',
+              lineHeight: '1.1',
+            }}
+          >
+            {highScore}
+          </div>
+          <div
+            style={{
+              fontSize: '1.2em',
+              fontWeight: '600',
+              color: '#fff',
+              textShadow: '0 1px 4px #000',
+              letterSpacing: '0.5px',
+            }}
+          >
+            High Score
+          </div>
+          {loading && (
+            <p style={{ margin: '5px 0', fontSize: '0.9em' }}>Updating score...</p>
+          )}
+          {error && (
+            <p
+              className="error"
+              style={{ color: '#ff6b6b', margin: '5px 0', fontSize: '0.9em' }}
+            >
+              {error}
+            </p>
+          )}
           {gameState === 'GAME_OVER' && currentScore > highScore && (
             <p style={{ color: '#4CAF50', margin: '5px 0', fontSize: '0.9em' }}>
               New High Score!
