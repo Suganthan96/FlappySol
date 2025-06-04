@@ -239,10 +239,12 @@ const SolanaHighScore = ({ currentScore, gameState }) => {
           style={{
             padding: '10px 20px',
             borderRadius: '8px',
-            background: '#00FFA3',
-            color: '#222', // dark text for contrast
+            background: 'rgba(0,0,0,0.25)', // matte, transparent
+            color: '#fff',
             border: 'none',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
           }}
         />
       </div>
