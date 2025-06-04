@@ -5,6 +5,7 @@ import { PublicKey, Transaction } from '@solana/web3.js';
 import { Program, AnchorProvider, web3 } from '@project-serum/anchor';
 import { Buffer } from 'buffer';
 import '@solana/wallet-adapter-react-ui/styles.css';
+import bgImage from '../res/backWal2.png';
 
 // Your deployed program ID
 const PROGRAM_ID = new PublicKey('EhjppSC6Etd2ZbXtc849HHHoTKNLGJC2EmjHwhSD5F2j');
@@ -226,7 +227,12 @@ const SolanaHighScore = ({ currentScore, gameState }) => {
       display: 'flex',
       flexDirection: 'column',
       gap: '10px',
-      alignItems: 'flex-end'
+      alignItems: 'flex-end',
+      background: `white url(${bgImage}) no-repeat center center`,
+      backgroundSize: 'cover',
+      borderRadius: '10px',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+      padding: '20px'
     }}>
       <div style={{ transform: 'scale(0.8)' }}>
         <WalletMultiButton />
