@@ -231,7 +231,7 @@ const SolanaHighScore = ({ currentScore, gameState }) => {
       background: `white url(${bgImage}) no-repeat center center`,
       backgroundSize: 'cover',
       borderRadius: '10px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)',
       padding: '20px'
     }}>
       <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center', width: '100%' }}>
