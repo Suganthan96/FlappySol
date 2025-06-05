@@ -200,33 +200,35 @@ const StartButton = () => {
         }}
       >
         {/* Row: Bird and Connect Wallet message */}
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '30px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', marginBottom: '30px' }}>
           {/* Bird image (animated sprite) */}
-          <Bird bird={store.bird} />
-          {/* Connect Wallet message */}
-          {!isWalletConnected && (
-            <div style={{
-              background: 'rgba(255,255,255,0.18)',
-              color: '#222',
-              padding: '10px 20px',
-              borderRadius: '12px',
-              textAlign: 'center',
-              fontFamily: 'Arial, sans-serif',
-              fontSize: '18px',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-              border: '1.5px solid rgba(255,255,255,0.35)',
-              letterSpacing: '0.5px',
-              whiteSpace: 'normal',
-              marginLeft: '4px',
-              marginBottom: '0px',
-              zIndex: 2000
-            }}>
-              <span>Connect Wallet</span><br/><span>to Play</span>
-            </div>
-          )}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Bird bird={store.bird} />
+            {/* Connect Wallet message */}
+            {!isWalletConnected && (
+              <div style={{
+                background: 'rgba(255,255,255,0.18)',
+                color: '#222',
+                padding: '10px 0px',
+                borderRadius: '12px',
+                textAlign: 'center',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                border: '1.5px solid rgba(255,255,255,0.35)',
+                letterSpacing: '0.5px',
+                whiteSpace: 'nowrap',
+                marginTop: '20px',
+                marginBottom: '0px',
+                zIndex: 2000
+              }}>
+                Connect Wallet to Play
+              </div>
+            )}
+          </div>
         </div>
         {/* Start button below */}
         <img 
