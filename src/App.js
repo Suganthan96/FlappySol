@@ -185,7 +185,7 @@ const StartButton = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '20px',
+          gap: '0px',
           pointerEvents: 'auto',
           cursor: 'pointer',
           position: 'relative',
@@ -199,22 +199,36 @@ const StartButton = () => {
           }
         }}
       >
-        {!isWalletConnected && (
-          <div style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            color: 'white',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            textAlign: 'center',
-            fontFamily: 'Arial, sans-serif',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-            marginBottom: '10px'
-          }}>
-            Connect Wallet to Start
-          </div>
-        )}
+        {/* Row: Bird and Connect Wallet message */}
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '30px' }}>
+          {/* Bird image (animated sprite) */}
+          <Bird bird={store.bird} />
+          {/* Connect Wallet message */}
+          {!isWalletConnected && (
+            <div style={{
+              background: 'rgba(255,255,255,0.18)',
+              color: '#222',
+              padding: '10px 20px',
+              borderRadius: '12px',
+              textAlign: 'center',
+              fontFamily: 'Arial, sans-serif',
+              fontSize: '18px',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1.5px solid rgba(255,255,255,0.35)',
+              letterSpacing: '0.5px',
+              whiteSpace: 'normal',
+              marginLeft: '4px',
+              marginBottom: '0px',
+              zIndex: 2000
+            }}>
+              <span>Connect Wallet</span><br/><span>to Play</span>
+            </div>
+          )}
+        </div>
+        {/* Start button below */}
         <img 
           src={startBtn} 
           alt="Start" 
@@ -222,7 +236,9 @@ const StartButton = () => {
             width: 80, 
             height: 'auto',
             pointerEvents: 'auto',
-            opacity: isWalletConnected ? 1 : 0.5
+            opacity: isWalletConnected ? 1 : 0.5,
+            marginBottom: '70px',
+            marginTop: '0px'
           }} 
         />
       </div>
