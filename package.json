@@ -41,7 +41,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "postinstall": "npm install --legacy-peer-deps"
+    "postinstall": "npm install --force"
   },
   "eslintConfig": {
     "extends": [
