@@ -14,6 +14,7 @@ This project is a Flappy Bird-style game built with React that integrates with t
 * **@solana/wallet-adapter-wallets** – Provides wallet implementations (Solflare, Phantom, etc.)
 * **@solana/wallet-adapter-react-ui** – Prebuilt UI components for wallet connection
 * **@solana/wallet-adapter-solflare** – Solflare wallet adapter
+* **@project-serum/anchor** – Anchor TypeScript client for interacting with Solana smart contracts
 * **borsh** – Binary serialization for Rust/JS interoperability
 * **buffer, process, stream-browserify** – Polyfills for Node.js modules in browser
 * **ajv, ajv-keywords** – JSON schema validation
@@ -33,6 +34,7 @@ Make sure you have Node.js and npm installed. In the project root, run:
 
 ```bash
 npm install @solana/web3.js @solana/wallet-adapter-react @solana/wallet-adapter-wallets @solana/wallet-adapter-react-ui @solana/wallet-adapter-solflare borsh buffer
+npm install @project-serum/anchor
 npm install --save-dev @babel/plugin-proposal-private-property-in-object buffer process stream-browserify
 npm install --save-dev react-app-rewired
 npm install ajv@8.12.0 ajv-keywords@5.1.0 --save-dev --legacy-peer-deps
@@ -145,10 +147,9 @@ You can also build and deploy programs in-browser using:
 
 These tools are great for testing and learning. For full projects, Anchor CLI is preferred.
 
-
 ---
 
-## 6. Running the Full App
+## 5. Running the Full App
 
 1. Start Solana local validator (optional for local testing):
 
@@ -165,6 +166,6 @@ These tools are great for testing and learning. For full projects, Anchor CLI is
 3. Start your frontend app:
 
    ```bash
-   cd frontend
+   cd FlappySol
    npm start
    ```
