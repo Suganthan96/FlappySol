@@ -4,6 +4,13 @@ This project is a Flappy Bird-style game built with React that integrates with t
 
 ---
 
+## ScreenShots
+![Screenshot (11)](https://github.com/user-attachments/assets/3a4cc334-ba64-408d-86de-78ecea29adec)
+
+![Screenshot (12)](https://github.com/user-attachments/assets/43c182e5-1d6f-4309-b885-59d225777fbd)
+
+---
+
 ## 1. Tech Stack Overview
 
 ### Frontend (React + Solana Wallet Integration)
