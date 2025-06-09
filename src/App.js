@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 //import logo from './logo.svg';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
-import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
-import { BackpackWalletAdapter } from '@solana/wallet-adapter-backpack';
-import { BraveWalletAdapter } from '@solana/wallet-adapter-brave';
-import { CoinbaseWalletAdapter } from '@solana/wallet-adapter-coinbase';
+import {
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+  TorusWalletAdapter,
+  CoinbaseWalletAdapter,
+  LedgerWalletAdapter,
+  MathWalletAdapter,
+  NightlyWalletAdapter,
+  TokenPocketWalletAdapter,
+  TrustWalletAdapter,
+  WalletConnectWalletAdapter,
+} from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 import SolanaHighScore from './components/SolanaHighScore';
 import './App.css';
@@ -33,13 +41,31 @@ import bronzecoin from './res/bronzecoin.png';
 import silvercoin from './res/silvercoin.png';
 import goldcoin from './res/goldcoin.png';
 
-// Configure all supported wallets
+// Import wallet adapter CSS
+import '@solana/wallet-adapter-react-ui/styles.css';
+
+// Configure wallets outside of component
+const network = WalletAdapterNetwork.Devnet;
+const endpoint = clusterApiUrl(network);
+
 const wallets = [
   new PhantomWalletAdapter(),
   new SolflareWalletAdapter(),
-  new BackpackWalletAdapter(),
-  new BraveWalletAdapter(),
-  new CoinbaseWalletAdapter()
+  new CoinbaseWalletAdapter(),
+  new WalletConnectWalletAdapter({
+    network,
+    options: {
+      relayUrl: 'wss://relay.walletconnect.com',
+      projectId: 'YOUR_PROJECT_ID', // Get this from WalletConnect
+      metadata: {
+        name: 'Flappy Bird Game',
+        description: 'Flappy Bird Game on Solana',
+        url: 'https://your-game-url.com',
+        icons: ['https://your-game-url.com/icon.png']
+      }
+    }
+  }),
+  new TrustWalletAdapter(),
 ];
 
 const SpriteWrapper = observer(class SpriteWrapper extends React.Component {
@@ -185,7 +211,7 @@ const StartButton = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0px',
+          gap: '20px',
           pointerEvents: 'auto',
           cursor: 'pointer',
           position: 'relative',
@@ -199,38 +225,22 @@ const StartButton = () => {
           }
         }}
       >
-        {/* Row: Bird and Connect Wallet message */}
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', marginBottom: '30px' }}>
-          {/* Bird image (animated sprite) */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Bird bird={store.bird} />
-            {/* Connect Wallet message */}
-            {!isWalletConnected && (
-              <div style={{
-                background: 'rgba(255,255,255,0.18)',
-                color: '#222',
-                padding: '10px 0px',
-                borderRadius: '12px',
-                textAlign: 'center',
-                fontFamily: 'Arial, sans-serif',
-                fontSize: '18px',
-                fontWeight: 'bold',
-                boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-                border: '1.5px solid rgba(255,255,255,0.35)',
-                letterSpacing: '0.5px',
-                whiteSpace: 'nowrap',
-                marginTop: '20px',
-                marginBottom: '0px',
-                zIndex: 2000
-              }}>
-                Connect Wallet to Play
-              </div>
-            )}
+        {!isWalletConnected && (
+          <div style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            color: 'white',
+            padding: '10px 20px',
+            borderRadius: '8px',
+            textAlign: 'center',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '18px',
+            fontWeight: 'bold',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+            marginBottom: '10px'
+          }}>
+            Connect Wallet to Start
           </div>
-        </div>
-        {/* Start button below */}
+        )}
         <img 
           src={startBtn} 
           alt="Start" 
@@ -238,9 +248,7 @@ const StartButton = () => {
             width: 80, 
             height: 'auto',
             pointerEvents: 'auto',
-            opacity: isWalletConnected ? 1 : 0.5,
-            marginBottom: '70px',
-            marginTop: '0px'
+            opacity: isWalletConnected ? 1 : 0.5
           }} 
         />
       </div>
@@ -384,8 +392,8 @@ const App = observer(class App extends React.Component {
     const { currentstate } = this.props.game;
 
     return (
-      <ConnectionProvider endpoint={clusterApiUrl('devnet')}>
-        <WalletProvider wallets={wallets} autoConnect={true}>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect>
           <WalletModalProvider>
             <div className="App" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
               <SolanaHighScore 
