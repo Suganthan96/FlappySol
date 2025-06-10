@@ -247,7 +247,7 @@ const StartButton = () => {
                 letterSpacing: '0.5px',
                 whiteSpace: 'nowrap',
                 marginTop: '20px',
-                marginBottom: '0px',
+                marginBottom: '30px',
                 zIndex: 2000
               }}>
                 Connect Wallet to Play
