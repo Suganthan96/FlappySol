@@ -225,22 +225,36 @@ const StartButton = () => {
           }
         }}
       >
-        {!isWalletConnected && (
-          <div style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            color: 'white',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            textAlign: 'center',
-            fontFamily: 'Arial, sans-serif',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-            marginBottom: '10px'
-          }}>
-            Connect Wallet to Start
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', marginBottom: '30px' }}>
+          {/* Bird image (animated sprite) */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Bird bird={store.bird} />
+            {/* Connect Wallet message */}
+            {!isWalletConnected && (
+              <div style={{
+                background: 'rgba(255,255,255,0.18)',
+                color: '#222',
+                padding: '10px 0px',
+                borderRadius: '12px',
+                textAlign: 'center',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                border: '1.5px solid rgba(255,255,255,0.35)',
+                letterSpacing: '0.5px',
+                whiteSpace: 'nowrap',
+                marginTop: '20px',
+                marginBottom: '20px',
+                zIndex: 2000
+              }}>
+                Connect Wallet to Play
+              </div>
+            )}
           </div>
-        )}
+        </div>
         <img 
           src={startBtn} 
           alt="Start" 
